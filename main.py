@@ -40,6 +40,10 @@ REVIEW = (
 
 
 def main() -> None:
+    if len(REVIEW) > 200:
+        raise ValueError(f"review must be at most 200 characters, got {len(REVIEW)}")
+    if REVIEW.count(".") != 1 or not REVIEW.rstrip().endswith("."):
+        raise ValueError("review must be exactly one sentence")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as handle:
         handle.write(REVIEW)
